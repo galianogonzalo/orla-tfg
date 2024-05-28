@@ -1,0 +1,28 @@
+<div class="row">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light align-content-end">
+        <div class="container">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">PRECIO</a><!-- Te mueve hasta la lista de precios/servicios -->
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacto">CONTACTO</a><!-- Te mueve hasta el formulario de contacto -->
+                    </li>
+                    <li class="nav-item">
+                        <a [routerLink]="['/mis_orlas']" routerLinkActive="router-link-active"  class="nav-link">MIS ORLAS</a><!-- PRIVADO -->
+                    </li>
+                    <li class="nav-item">
+                        <a [routerLink]="['/crear_orla']" routerLinkActive="router-link-active"  class="nav-link">CREAR ORLA</a><!-- PRIVADO -->
+                    </li>
+                    <li class="nav-item">
+                        <a [routerLink]="['/crear_persona']" class="nav-link">CREAR PERSONAS</a><!-- PRIVADO -->
+                    </li>
+                    <li class="nav-item">
+                        <a [routerLink]="['/login']" routerLinkActive="router-link-active" class="nav-link">ACCESO</a> <!-- Te mueve hasta el formulario de log in | desaparece del nav.bar al logearse -->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
