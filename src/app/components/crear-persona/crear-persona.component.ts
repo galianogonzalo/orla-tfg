@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Storage, ref, uploadBytesResumable } from '@angular/fire/storage';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-crear-persona',
@@ -11,10 +11,27 @@ import { ReactiveFormsModule } from '@angular/forms';
     <div>
       <input type="file" accept="images/*" (change)="changeInput($event)"/>
     </div>
+
+    <h2>Añade personas a tus orlas</h2>
+    <div class="row row justify-content-center">      
+      <div class="form-container col-12 col-md-8 col-lg-4">
+        <form action="">
+          
+        </form>
+      </div>
+    </div>
   `,
   styles: ``
 })
 export class CrearPersonaComponent {
+  
+  /* Declarar formulario */
+  myForm = new FormGroup({
+
+  })
+  
+  
+  
   file!: File
 
   private readonly _storage = inject(Storage)
