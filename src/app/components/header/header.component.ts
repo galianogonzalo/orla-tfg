@@ -4,14 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-header',
   standalone: true,
   imports: [],
-  template: `
-    <div class="row bg-info">
-      <div class="d-flex flex-nowrap bd-highlight align-content-end ">
-        <div class="p-2 bd-highlight"><a routerLink="inicio" href="#"><img src="assets/img/fotoorla_logo.png" width="120px"></a>
-          </div>
-      </div>
-    </div>
-  `,
+  templateUrl: './header.component.html',
   styles: ``
 })
 export class HeaderComponent {

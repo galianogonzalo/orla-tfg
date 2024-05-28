@@ -4,11 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-crear-orla',
   standalone: true,
   imports: [],
-  template: `
-    <p>
-      crear13
-    </p>
-  `,
+  templateUrl: './crear-orla.component.html',
   styles: ``
 })
 export class CrearOrlaComponent {
