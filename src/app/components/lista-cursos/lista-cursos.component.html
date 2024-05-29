@@ -1,0 +1,6 @@
+<h3>Seleccione un curso</h3>
+<div class="list-group border rounded">
+    @for (c of getCursos(); track c.id){
+        <button (click)="getAlumnosByCurso(c.id)" type="button" class="list-group-item list-group-item-action" >{{c.name}}</button>
+    }
+</div>
