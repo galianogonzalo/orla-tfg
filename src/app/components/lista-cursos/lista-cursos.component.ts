@@ -1,22 +1,35 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ListaCursosService } from '../../services/lista-cursos.service';
+import { CursoAlumnoService } from '../../services/curso-alumno.service';
 
 @Component({
   selector: 'app-lista-cursos',
   standalone: true,
   imports: [],
   templateUrl: './lista-cursos.component.html',
-  styles: ``
+  styles: `
+    #cursos-list{
+      height: 250px;
+      max-height: 250px;
+      overflow-y: auto; 
+    }
+  `
 })
-export class ListaCursosComponent {
+export class ListaCursosComponent implements OnInit{
 
   private cursosBD = inject(ListaCursosService)
+  private cursoAlumnoSV = inject(CursoAlumnoService)
+
+
+  ngOnInit(): void {
+    this.getCursos()
+  }
 
   getCursos(){
     return this.cursosBD.getCursos()
   }
 
-  getAlumnosByCurso(cursoId:any){
-
+  selectCurso(cursoId:any){
+    this.cursoAlumnoSV.selectCurso(cursoId)
   }
 }
