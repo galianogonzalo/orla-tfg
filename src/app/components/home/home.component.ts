@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { DbService } from '../../services/db.service';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,8 @@ import { RouterLink } from '@angular/router';
   }`
 })
 export class HomeComponent {
+  private db = inject(DbService)
+
   formRegistro: FormGroup;
   isFormFilled: boolean = false;
 
@@ -28,8 +31,11 @@ export class HomeComponent {
     });
   }
 
-  submit(): void {
-    console.log(this.formRegistro.value);
+  crearUsuario(): void {
+    const usuario = this.formRegistro.value
+    if(usuario){
+      this.db.crearUsuario(usuario)
+    }
   }
 
 }

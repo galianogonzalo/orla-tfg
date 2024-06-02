@@ -2,6 +2,7 @@ import { Component, OnInit, inject, signal } from '@angular/core';
 import { Storage, ref, uploadBytesResumable, list, getDownloadURL } from '@angular/fire/storage';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ListaCursosService } from '../../services/lista-cursos.service';
+import { DbService } from '../../services/db.service';
 
 @Component({
   selector: 'app-crear-persona',
@@ -13,6 +14,9 @@ import { ListaCursosService } from '../../services/lista-cursos.service';
   `
 })
 export class CrearPersonaComponent implements OnInit{
+  
+  private db = inject(DbService)
+
 
   /* Traer los cursos de la base de datos (Servicio) */
   private cursosBD = inject(ListaCursosService)

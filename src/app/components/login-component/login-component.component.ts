@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DbService } from '../../services/db.service';
+import { mergeMap } from 'rxjs';
 
 
 @Component({
@@ -12,18 +14,31 @@ import { ReactiveFormsModule } from '@angular/forms';
     margin-bottom: 20px;
   }`
 })
-export class LoginComponentComponent {
-  formLogin: FormGroup;
+export class LoginComponentComponent implements OnInit {
+  private db = inject(DbService)
 
-  constructor() {
+  formLogin!: FormGroup;
+
+  /* constructor() {
     this.formLogin = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)])
     });
-  }
+  } */
 
-  submit(): void {
+  ngOnInit(): void {
+    this.formLogin = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)])
+    });
+    
+  }
+  login(): void {
     console.log(this.formLogin.value);
+    const { usuario, clave } = this.formLogin.value
+
+    this.db.login( usuario, clave)
+
   }
 
 }

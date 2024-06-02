@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { DbService } from '../../services/db.service';
 
 @Component({
   selector: 'app-crear-curso',
@@ -9,6 +10,9 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
   styles: ``
 })
 export class CrearCursoComponent {
+  
+  private db = inject(DbService)
+
   crearCursoForm: FormGroup
 
   constructor() {
@@ -17,7 +21,10 @@ export class CrearCursoComponent {
     });
   }
 
-  submit(): void {
-    console.log(this.crearCursoForm.value);
+  crearCurso() {
+    const curso = this.crearCursoForm.value
+    if(curso){
+      this.db.crearCurso(curso)
+    }
   }
 }

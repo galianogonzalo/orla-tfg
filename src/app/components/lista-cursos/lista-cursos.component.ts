@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ListaCursosService } from '../../services/lista-cursos.service';
 import { CursoAlumnoService } from '../../services/curso-alumno.service';
+import { DbService } from '../../services/db.service';
 
 @Component({
   selector: 'app-lista-cursos',
@@ -16,6 +17,8 @@ import { CursoAlumnoService } from '../../services/curso-alumno.service';
   `
 })
 export class ListaCursosComponent implements OnInit{
+
+  private db = inject(DbService)
 
   private cursosBD = inject(ListaCursosService)
   private cursoAlumnoSV = inject(CursoAlumnoService)
