@@ -12,7 +12,8 @@ export class ListaCursosService {
     {id: 3, name: "2º BACH 23-24"},
     {id: 4, name: "4º ESO 23/24"},
     {id: 5, name: "2º bachillerato 20/21"},
-    {id: 6, name: "4º ESO 2022-2023"}
+    {id: 6, name: "4º ESO 2022-2023"},
+    {id: 7, name: "4º ESO 2024-2025"},
   ]
 
   constructor() { }
