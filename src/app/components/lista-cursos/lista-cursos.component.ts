@@ -14,11 +14,16 @@ import { DbService } from '../../services/db.service';
       max-height: 250px;
       overflow-y: auto; 
     }
+
+    #botonBorrar{
+      position: absolute;
+      right: 0;
+    }
   `
 })
 export class ListaCursosComponent implements OnInit{
 
-  private db = inject(DbService)
+  /* private db = inject(DbService) */
 
   private cursosBD = inject(ListaCursosService)
   private cursoAlumnoSV = inject(CursoAlumnoService)
@@ -34,5 +39,9 @@ export class ListaCursosComponent implements OnInit{
 
   selectCurso(cursoId:any){
     this.cursoAlumnoSV.selectCurso(cursoId)
+  }
+
+  borrarCurso(id:number){
+
   }
 }

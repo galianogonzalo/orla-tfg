@@ -10,12 +10,15 @@ import { mergeMap } from 'rxjs';
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './login-component.component.html',
-  styles: `#login{
-    margin-bottom: 20px;
-  }`
+  styles: `
+    #login{
+      height: 61vh;
+      /* margin-bottom: 20px; */
+    }
+  `
 })
 export class LoginComponentComponent implements OnInit {
-  private db = inject(DbService)
+  /* private db = inject(DbService) */
 
   formLogin!: FormGroup;
 
@@ -34,10 +37,10 @@ export class LoginComponentComponent implements OnInit {
     
   }
   login(): void {
-    console.log(this.formLogin.value);
+    /* console.log(this.formLogin.value);
     const { usuario, clave } = this.formLogin.value
 
-    this.db.login( usuario, clave)
+    this.db.login( usuario, clave) */
 
   }
 

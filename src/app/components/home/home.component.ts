@@ -14,7 +14,7 @@ import { DbService } from '../../services/db.service';
   }`
 })
 export class HomeComponent {
-  private db = inject(DbService)
+  /* private db = inject(DbService) */
 
   formRegistro: FormGroup;
   isFormFilled: boolean = false;
@@ -32,10 +32,10 @@ export class HomeComponent {
   }
 
   crearUsuario(): void {
-    const usuario = this.formRegistro.value
+    /* const usuario = this.formRegistro.value
     if(usuario){
       this.db.crearUsuario(usuario)
-    }
+    } */
   }
 
 }
