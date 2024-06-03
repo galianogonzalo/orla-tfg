@@ -15,7 +15,7 @@ import { DbService } from '../../services/db.service';
 })
 export class CrearPersonaComponent implements OnInit{
   
-  private db = inject(DbService)
+  /* private db = inject(DbService) */
 
 
   /* Traer los cursos de la base de datos (Servicio) */

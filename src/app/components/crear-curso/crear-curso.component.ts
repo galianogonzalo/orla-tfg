@@ -11,7 +11,7 @@ import { DbService } from '../../services/db.service';
 })
 export class CrearCursoComponent {
   
-  private db = inject(DbService)
+  /* private db = inject(DbService) */
 
   crearCursoForm: FormGroup
 
@@ -22,9 +22,9 @@ export class CrearCursoComponent {
   }
 
   crearCurso() {
-    const curso = this.crearCursoForm.value
+    /* const curso = this.crearCursoForm.value
     if(curso){
       this.db.crearCurso(curso)
-    }
+    } */
   }
 }

@@ -19,7 +19,7 @@ import { DbService } from '../../services/db.service';
 })
 export class ListaAlumnosComponent implements OnInit {
 
-  private db = inject(DbService)
+  /* private db = inject(DbService) */
   
   private alumnosDB = inject(ListaAlumnosService)
   private cursoAlumnoSV = inject(CursoAlumnoService)

@@ -11,7 +11,7 @@ import { DbService } from '../../services/db.service';
   styles: ``
 })
 export class ListaOrlasComponent {
-  private db = inject(DbService)
+  /* private db = inject(DbService) */
 
   private orlaBD = inject(ListaOrlasService)
 
