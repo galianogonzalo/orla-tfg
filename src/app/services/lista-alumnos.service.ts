@@ -23,6 +23,15 @@ export class ListaAlumnosService {
     {id: 14, nombre:"Alumno 14", apellidos:"Apellido 14", imagen:"../../assets/img/foto-id.jpg", curso:"1"},
     {id: 15, nombre:"Alumno 15", apellidos:"Apellido 15", imagen:"../../assets/img/foto-id.jpg", curso:"1"},
     {id: 16, nombre:"Alumno 16", apellidos:"Apellido 16", imagen:"../../assets/img/foto-id.jpg", curso:"1"},
+    {id: 16, nombre:"Alumno 16", apellidos:"Apellido 16", imagen:"../../assets/img/foto-id.jpg", curso:"1"},
+    {id: 16, nombre:"Alumno 16", apellidos:"Apellido 16", imagen:"../../assets/img/foto-id.jpg", curso:"1"},
+    {id: 16, nombre:"Alumno 16", apellidos:"Apellido 16", imagen:"../../assets/img/foto-id.jpg", curso:"1"},
+    {id: 16, nombre:"Alumno 16", apellidos:"Apellido 16", imagen:"../../assets/img/foto-id.jpg", curso:"1"},
+    {id: 16, nombre:"Alumno 16", apellidos:"Apellido 16", imagen:"../../assets/img/foto-id.jpg", curso:"1"},
+    {id: 16, nombre:"Alumno 16", apellidos:"Apellido 16", imagen:"../../assets/img/foto-id.jpg", curso:"1"},
+    {id: 16, nombre:"Alumno 16", apellidos:"Apellido 16", imagen:"../../assets/img/foto-id.jpg", curso:"1"},
+    {id: 16, nombre:"Alumno 16", apellidos:"Apellido 16", imagen:"../../assets/img/foto-id.jpg", curso:"1"},
+    {id: 16, nombre:"Alumno 16", apellidos:"Apellido 16", imagen:"../../assets/img/foto-id.jpg", curso:"1"},
   ]
 
   private profesores = [
@@ -51,5 +60,9 @@ export class ListaAlumnosService {
 
   getProfesores(){
     return this.profesores
+  }
+
+  getCursos() {
+    return [...new Set(this.alumnos.map(a => a.curso))];
   }
 }
