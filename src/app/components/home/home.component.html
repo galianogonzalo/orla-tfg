@@ -3,39 +3,42 @@
             <h1>TU ORLA EN POCOS PASOS</h1>
             <h2>
                 No necesitas instalar ni descargar nada y puedes hacerla desde cualquier
-                ordenador. ¡Y podrás descargar una prueba en PDF!
+                ordenador. ¡Y podrás descargar tu orla en PDF!
             </h2>
         </div>
     
-        <div id="formRegistro" class="col-md-3 border border-info rounded-5 bg-info-subtle">
+        <div id="formRegistro" class="col-md-3 border border-info rounded-5 bg-info-subtle mt-2">
             <div class="row justify-content-center mt-5">
-                <div class="col-md-6">
-                    <h2 class="mb-4">REGÍSTRATE</h2>
+                <div class="col-md-9">
+                    <div class="mb-3 text-center">
+                        <h2>REGÍSTRATE</h2>
+                    </div>                   
                     <form [formGroup]="formRegistro" (ngSubmit)="crearUsuario()">
-                        <div class="mb-3">
+                        <div class="mb-2">
                             <label for="email_registro" class="form-label">Email:</label>
                             <input type="email" class="form-control" formControlName="email" id="email_registro" name="email_registro" required />
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-2">
                             <label for="password_registro" class="form-label">Contraseña:</label>
-                            <input type="password" class="form-control" formControlName="password" id="password_registro" name="password_registro"
-                                required />
+                            <input type="password" class="form-control" formControlName="password" id="password_registro" name="password_registro" required />
                         </div>
                         <div class="mb-3 form-check">
-                            <input type="checkbox" formControlName="politica" id="privacy_policy" name="privacy_policy"
-                                required />
+                            <input type="checkbox" formControlName="politica" id="privacy_policy" name="privacy_policy" required />
                             <label class="form-check-label" for="privacy_policy">Acepto la política de privacidad</label>
                         </div>
-                        <button type="submit" class="btn btn-primary">CREAR CUENTA</button>
-                        <br>
-                        <a [routerLink]="['/login']" routerLinkActive="router-link-active" >Ya tienes cuenta? Accede</a>
+                        <div class="mb-2 text-center">
+                            <button type="submit" class="btn btn-primary">CREAR CUENTA</button>
+                        </div>
+                        <div class="mb-2 text-center">
+                            <a [routerLink]="['/login']" routerLinkActive="router-link-active">¿Ya tienes cuenta? Accede</a>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
     
-    <div class="row bg-info-subtle">
+    <!-- <div class="row bg-info-subtle">
         <h2>TU ORLA EN POCOS PASOS</h2>
         <div class="col-md-4">
             <h3>Haz tus fotos</h3>
@@ -58,9 +61,9 @@
                 enviamos en una semana.
             </p>
         </div>
-    </div>
+    </div> -->
     
-    <div class="row">
+    <!-- <div class="row">
         <h2>Nuestros precios</h2>
         <p class="text-danger">Componentes con precios/servicios</p>
     </div>
@@ -71,4 +74,4 @@
             <h3>Pregúntanos cualquier cosa etc.....</h3>
             <h5 class="text-danger">AQUI VA EL FORMULARIO DE CONTACTO</h5>
         </div>
-    </div>
+    </div> -->

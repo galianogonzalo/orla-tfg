@@ -8,7 +8,13 @@ import { DbService } from '../../services/db.service';
   standalone: true,
   imports: [OrlaActionsComponent],
   templateUrl: './lista-orlas.component.html',
-  styles: ``
+  styles: `
+    #lista-orlas{
+      height: 250px;
+      max-height: 250px;
+      overflow-y: auto; 
+   }
+  `
 })
 export class ListaOrlasComponent {
   /* private db = inject(DbService) */
