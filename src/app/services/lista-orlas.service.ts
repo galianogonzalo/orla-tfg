@@ -11,6 +11,12 @@ export class ListaOrlasService {
     {id: 2, name:"orla del año pasado", date: "10-06-2023", curso: "2º DAW"},
     {id: 3, name:"orla de prueba", date: "15-04-2024", curso: "4º ESO"},
     {id: 4, name:"orla versión final", date: "03-02-2024", curso: "2º BACH"},
+    {id: 4, name:"orla versión final", date: "03-02-2024", curso: "2º BACH"},
+    {id: 4, name:"orla versión final", date: "03-02-2024", curso: "2º BACH"},
+    {id: 4, name:"orla versión final", date: "03-02-2024", curso: "2º BACH"},
+    {id: 4, name:"orla versión final", date: "03-02-2024", curso: "2º BACH"},
+    {id: 4, name:"orla versión final", date: "03-02-2024", curso: "2º BACH"},
+    {id: 4, name:"orla versión final", date: "03-02-2024", curso: "2º BACH"},
   ]
 
   constructor() { }
