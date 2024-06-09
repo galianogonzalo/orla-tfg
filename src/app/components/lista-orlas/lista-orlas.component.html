@@ -1,0 +1,39 @@
+<div class="row text-center mt-3">
+      <h2>Mis orlas</h2>
+</div>
+<div class="row">
+  <div class="col-md-6 offset-md-3 mt-3 mb-5">
+        <table class="table table-sm table-hover align-middle">
+          <thead>
+            <tr>
+              <th scope="col" width="25%" class="text-center">Nombre</th>
+              <th scope="col" width="10%" class="text-center">Fecha</th>
+              <th scope="col" width="20%" class="text-center">Curso</th>
+              <th scope="col" width="10%" class="text-center">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+          @for (o of getOrlas(); track o.id) {
+            <tr>
+              <!-- NOMBRE DE LA ORLA -->
+              <td scope="col" class="text-start">
+                {{o.name}}
+              </td>
+              <!-- FECHA DE LA ORLA -->
+              <td scope="col" class="text-center">
+                {{o.date}}
+              </td>
+              <!-- CURSO DE LA ORLA -->
+              <td scope="col" class="text-center">
+                {{o.curso}}
+              </td>
+              <!-- COMPONENTE CON 3 BOTONES -->
+              <td scope="col" class="text-center">
+                <app-orla-actions></app-orla-actions>
+              </td>
+            </tr>
+          }
+          </tbody>
+        </table>
+    </div>
+</div>
