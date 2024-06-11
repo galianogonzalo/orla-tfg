@@ -13,7 +13,7 @@ import { CommonModule, NgStyle } from '@angular/common';
 })
 export class CrearOrlaComponent {
 
- cursos: any[] = [];
+  cursos: any[] = [];
   alumnos: any[] = [];
   profesores: any[] = [];
   seleccionados: any[] = [];
@@ -21,6 +21,7 @@ export class CrearOrlaComponent {
   cursoSeleccionado: any = null;
   previsualizacionVisible: boolean = false;
   alumnosPorFila: any[] = [];
+  nombreInstituto: string = 'IES José Planes';
 
   fondos = [
     { id: 1, nombre: 'Fondo A', url: '../../assets/fondo1.jpg' },
@@ -28,7 +29,9 @@ export class CrearOrlaComponent {
   ];
   
 
-  constructor(private listaAlumnosService: ListaAlumnosService) {}
+  constructor(
+    private listaAlumnosService: ListaAlumnosService,
+  ) {}
 
   ngOnInit(): void {
     this.cursos = this.listaAlumnosService.getCursos();

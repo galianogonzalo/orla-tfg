@@ -1,9 +1,10 @@
 <div>
-    <h1 class="mb-4">Generador de Orla del Instituto</h1>
+  <div class="container md-5">
+    <h1 class="mb-4 text-center">Generador de Orla del Instituto</h1>
     
     <!-- Selección de curso -->
     <div *ngIf="!cursoSeleccionado">
-      <h2>Selecciona el Curso</h2>
+      <h2 class="text-center">Selecciona el Curso</h2>
       <ul class="list-group">
         <li *ngFor="let curso of cursos" class="list-group-item">
           <button class="btn btn-primary" (click)="seleccionarCurso(curso)">Curso {{ curso }}</button>
@@ -13,7 +14,7 @@
     
     <!-- Selección de profesores -->
     <div *ngIf="cursoSeleccionado">
-      <h2 class="mt-4">Selecciona los Profesores</h2>
+      <h2 class="mt-4 text-center">Selecciona los Profesores</h2>
       <div class="row">
         <div class="col">
           <div class="list-group">
@@ -28,12 +29,12 @@
     
     <!-- Selección de alumnos -->
     <div *ngIf="cursoSeleccionado">
-      <h2 class="mt-4">Selecciona los Alumnos</h2>
+      <h2 class="mt-4 text-center">Selecciona los Alumnos</h2>
       <div class="row">
         <div class="col">
           <div class="list-group">
             <div *ngFor="let alumno of alumnos" class="list-group-item">
-              <input type="checkbox" class="form-check-input me-2" (change)="toggleSeleccion(alumno)" />
+              <input type="checkbox" class="form-check-input me-2" [checked]="alumno.seleccionado" (change)="toggleSeleccion(alumno)" />
               <label class="form-check-label">{{ alumno.nombre }} {{ alumno.apellidos }}</label>
             </div>
           </div>
@@ -42,31 +43,37 @@
     </div>
     
     <!-- Selección de fondo -->
-    <div *ngIf="cursoSeleccionado">
-      <h2 class="mt-4">Selecciona el Fondo de la Orla</h2>
+    <div *ngIf="cursoSeleccionado" class="text-center">
+      <h2 class="mt-4 text-center">Selecciona el Fondo de la Orla</h2>
       <div class="row">
         <div class="col">
           <div class="list-group">
-            <div *ngFor="let fondo of fondos" class="list-group-item">
-              <input type="radio" class="form-check-input me-2" name="fondo" (change)="seleccionarFondo(fondo)" />
-              <label class="form-check-label">{{ fondo.nombre }}</label>
+            <div *ngFor="let fondo of fondos" class="list-group-item fondo-item" 
+                 (click)="seleccionarFondo(fondo)"
+                 [class.selected]="fondoSeleccionado === fondo"
+                 [style.cursor]="'pointer'">
+              <input type="radio" class="form-check-input d-none" name="fondo" [value]="fondo.id" />
               <img [src]="fondo.url" class="img-fluid rounded mt-2" style="max-height: 100px;" alt="Fondo de la Orla" />
             </div>
           </div>
         </div>
       </div>
     </div>
-    
-<!-- Mostrar Orla -->
-<div *ngIf="seleccionados.length > 0 && fondoSeleccionado">
+  </div>
+
+  <!-- Mostrar Orla -->
+  <div *ngIf="seleccionados.length > 0 && fondoSeleccionado" class="text-center">
     <h2>Vista Previa de la Orla</h2>
-    <div id="orla" [ngStyle]="{'background-image': fondoSeleccionado ? 'url(' + fondoSeleccionado.url + ')' : 'none'}" class="orla">
+    <div id="orla" [ngStyle]="{'background-image': fondoSeleccionado ? 'url(' + fondoSeleccionado.url + ')' : 'none'}" class="orla mx-auto">
+      <h3 class="nombre-instituto">{{ nombreInstituto }}</h3>
       <!-- Profesores -->
       <div class="orla-row profesores">
         <ng-container *ngFor="let persona of seleccionados">
           <div *ngIf="!persona.curso" class="orla-item profesor">
             <img [src]="persona.imagen" alt="{{ persona.nombre }}" class="img-fluid rounded-circle mb-2" />
-            <p>{{ persona.nombre }} {{ persona.apellidos }} (Profesor)</p>
+            <p>{{ persona.nombre }} 
+            <br>
+            {{ persona.apellidos }} (Profesor)</p>
           </div>
         </ng-container>
       </div>
@@ -75,11 +82,13 @@
         <ng-container *ngFor="let persona of seleccionados">
           <div *ngIf="persona.curso" class="orla-item">
             <img [src]="persona.imagen" alt="{{ persona.nombre }}" class="img-fluid rounded-circle mb-2" />
-            <p>{{ persona.nombre }} {{ persona.apellidos }} (Alumno)</p>
+            <p>{{ persona.nombre }} 
+            <br>
+            {{ persona.apellidos }} (Alumno)</p>
           </div>
         </ng-container>
       </div>
     </div>
-    <button (click)="generarPDF()">Generar PDF</button>
+    <button class="btn btn-primary" (click)="generarPDF()">Generar PDF</button>
+  </div>
 </div>
-  
