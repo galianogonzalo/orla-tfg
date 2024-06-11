@@ -11,10 +11,7 @@ import { mergeMap } from 'rxjs';
   imports: [ReactiveFormsModule],
   templateUrl: './login-component.component.html',
   styles: `
-    #login{
-      height: 61vh;
-      /* margin-bottom: 20px; */
-    }
+
   `
 })
 export class LoginComponentComponent implements OnInit {
