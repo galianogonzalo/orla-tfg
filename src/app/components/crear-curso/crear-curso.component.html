@@ -1,11 +1,12 @@
 <div class="row justify-content-center mt-5">
     <div class="col-md-6">
+        <h4>Añade un curso</h4>
         <form [formGroup]="crearCursoForm" (ngSubmit)="crearCurso()">
             <div class="form-group">
                 <label for="nombre">Nombre</label>
                 <input type="text" class="form-control" id="nombre" placeholder="Nombre" formControlName="nombre">
             </div>
-            <button type="submit" class="btn btn-primary">AÑADIR CURSO</button>
+            <button type="submit" class="btn btn-granate mt-2 mb-4">CREAR</button>
         </form>
     </div>
 </div>

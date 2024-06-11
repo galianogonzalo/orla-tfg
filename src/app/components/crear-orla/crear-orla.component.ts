@@ -3,6 +3,8 @@ import { ListaAlumnosService } from '../../services/lista-alumnos.service';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { CommonModule, NgStyle } from '@angular/common';
+import { ListaCursosService } from '../../services/lista-cursos.service';
+import { CursoAlumnoService } from '../../services/curso-alumno.service';
 
 @Component({
   selector: 'app-crear-orla',
@@ -23,6 +25,8 @@ export class CrearOrlaComponent {
   alumnosPorFila: any[] = [];
   nombreInstituto: string = 'IES José Planes';
 
+  selectedCursoId: number | null = null
+
   fondos = [
     { id: 1, nombre: 'Fondo A', url: '../../assets/fondo1.jpg' },
     { id: 2, nombre: 'Fondo B', url: '../../assets/fondo2.jpg' }
@@ -31,11 +35,21 @@ export class CrearOrlaComponent {
 
   constructor(
     private listaAlumnosService: ListaAlumnosService,
+    private listaCursosService: ListaCursosService,
+    private CursoAlumnoService: CursoAlumnoService,
   ) {}
 
   ngOnInit(): void {
     this.cursos = this.listaAlumnosService.getCursos();
     this.profesores = this.listaAlumnosService.getProfesores();
+
+    this.CursoAlumnoService.selectedCursoId$.subscribe(id => {
+      this.selectedCursoId = id
+      if(id !== null){
+        this.getAlumnosByCurso(id)
+      }
+    })
+
   }
 
   seleccionarCurso(curso: string): void {
@@ -85,4 +99,28 @@ export class CrearOrlaComponent {
       pdf.save('orla.pdf');
     });
   }
+
+  getCursos(){
+    return this.listaCursosService.getCursos()
+  }
+
+  selectCurso(cursoId:any){
+    this.CursoAlumnoService.selectCurso(cursoId)
+    this.cursoSeleccionado = cursoId;
+    this.alumnos = this.listaAlumnosService.getAlumnosByCurso(cursoId);
+  }
+
+  unselectCurso(){
+    this.cursoSeleccionado = null
+  }
+
+  getProfesores(){
+    return this.listaAlumnosService.getProfesores()
+  }
+
+  getAlumnosByCurso(id:any){
+    return this.listaAlumnosService.getAlumnosByCurso(id)
+  }
+
+
 }

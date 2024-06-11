@@ -1,0 +1,54 @@
+$MiOffWhite: #efefef;
+$MiGranate: #5c1547;
+$MiNaranja: #ff5627;
+$MiGris: #262626;
+
+
+/* BACKGROUNDS */
+.bg-granate{
+    background-color: $MiGranate !important;
+}
+
+.bg-naranja{
+    background-color: $MiNaranja !important;
+}
+
+.bg-gris{
+    background-color: $MiGris !important;
+}
+.bg-offWhite{
+    background-color: $MiOffWhite !important;
+}
+
+/* TEXTO */
+.text-gris{
+    color: $MiGris !important;
+}
+
+/* BOTÓN */
+.btn-granate {
+    @extend .btn-primary;  
+    background-color: $MiGranate !important;  
+    border: none !important;  
+    color: white !important;  
+}
+
+.btn-granate-border {
+    @extend .btn-granate;
+    border: 3px solid $MiGris !important;
+}
+
+/* LINKS */
+.link-dark{
+    text-decoration: none;
+    color: $MiGris;
+}
+
+.link-light{
+    text-decoration: none;
+    color: white;
+}
+
+.link-dark:hover, .link-light:hover{
+    text-decoration: underline;
+}

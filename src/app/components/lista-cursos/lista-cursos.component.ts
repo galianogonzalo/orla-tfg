@@ -3,6 +3,8 @@ import { ListaCursosService } from '../../services/lista-cursos.service';
 import { CursoAlumnoService } from '../../services/curso-alumno.service';
 import { DbService } from '../../services/db.service';
 
+declare var bootstrap: any;
+
 @Component({
   selector: 'app-lista-cursos',
   standalone: true,
@@ -28,6 +30,7 @@ export class ListaCursosComponent implements OnInit{
   private cursosBD = inject(ListaCursosService)
   private cursoAlumnoSV = inject(CursoAlumnoService)
 
+  private cursoAEliminar: number | null = null
 
   ngOnInit(): void {
     this.getCursos()
@@ -40,6 +43,28 @@ export class ListaCursosComponent implements OnInit{
   selectCurso(cursoId:any){
     this.cursoAlumnoSV.selectCurso(cursoId)
   }
+
+  openConfirmModal(cursoId: number): void {
+    this.cursoAEliminar = cursoId;
+    const modal = new bootstrap.Modal(document.getElementById('confirmDeleteModal'));
+    modal.show();
+  }
+
+
+  confirmarBorrado(): void {
+    if (this.cursoAEliminar !== null) {
+      this.borrarCurso(this.cursoAEliminar);
+      this.cursoAEliminar = null;
+    }
+    const modalElement = document.getElementById('confirmDeleteModal');
+    if (modalElement) {
+      const modal = bootstrap.Modal.getInstance(modalElement);
+      if (modal) {
+        modal.hide();
+      }
+    }
+  }
+
 
   borrarCurso(id:number){
 
