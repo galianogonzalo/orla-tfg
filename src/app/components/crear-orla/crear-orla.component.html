@@ -1,94 +1,115 @@
-<div>
-  <div class="container md-5">
-    <h1 class="mb-4 text-center">Generador de Orla del Instituto</h1>
-    
-    <!-- Selección de curso -->
-    <div *ngIf="!cursoSeleccionado">
-      <h2 class="text-center">Selecciona el Curso</h2>
-      <ul class="list-group">
-        <li *ngFor="let curso of cursos" class="list-group-item">
-          <button class="btn btn-primary" (click)="seleccionarCurso(curso)">Curso {{ curso }}</button>
-        </li>
-      </ul>
-    </div>
-    
-    <!-- Selección de profesores -->
-    <div *ngIf="cursoSeleccionado">
-      <h2 class="mt-4 text-center">Selecciona los Profesores</h2>
-      <div class="row">
-        <div class="col">
-          <div class="list-group">
-            <div *ngFor="let profesor of profesores" class="list-group-item">
-              <input type="checkbox" class="form-check-input me-2" (change)="toggleSeleccion(profesor)" />
-              <label class="form-check-label">{{ profesor.nombre }} {{ profesor.apellidos }}</label>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Selección de alumnos -->
-    <div *ngIf="cursoSeleccionado">
-      <h2 class="mt-4 text-center">Selecciona los Alumnos</h2>
-      <div class="row">
-        <div class="col">
-          <div class="list-group">
-            <div *ngFor="let alumno of alumnos" class="list-group-item">
-              <input type="checkbox" class="form-check-input me-2" [checked]="alumno.seleccionado" (change)="toggleSeleccion(alumno)" />
-              <label class="form-check-label">{{ alumno.nombre }} {{ alumno.apellidos }}</label>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Selección de fondo -->
-    <div *ngIf="cursoSeleccionado" class="text-center">
-      <h2 class="mt-4 text-center">Selecciona el Fondo de la Orla</h2>
-      <div class="row">
-        <div class="col">
-          <div class="list-group">
-            <div *ngFor="let fondo of fondos" class="list-group-item fondo-item" 
-                 (click)="seleccionarFondo(fondo)"
-                 [class.selected]="fondoSeleccionado === fondo"
-                 [style.cursor]="'pointer'">
-              <input type="radio" class="form-check-input d-none" name="fondo" [value]="fondo.id" />
-              <img [src]="fondo.url" class="img-fluid rounded mt-2" style="max-height: 100px;" alt="Fondo de la Orla" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="row justify-content-center py-3 bg-naranja ">
+  <div class="col-11 col-md-6 rounded py-4 bg-offWhite">
+    <h2 class="text-center mb-4">CREA TU ORLA</h2>
 
-  <!-- Mostrar Orla -->
-  <div *ngIf="seleccionados.length > 0 && fondoSeleccionado" class="text-center">
-    <h2>Vista Previa de la Orla</h2>
-    <div id="orla" [ngStyle]="{'background-image': fondoSeleccionado ? 'url(' + fondoSeleccionado.url + ')' : 'none'}" class="orla mx-auto">
-      <h3 class="nombre-instituto">{{ nombreInstituto }}</h3>
-      <!-- Profesores -->
-      <div class="orla-row profesores">
-        <ng-container *ngFor="let persona of seleccionados">
-          <div *ngIf="!persona.curso" class="orla-item profesor">
-            <img [src]="persona.imagen" alt="{{ persona.nombre }}" class="img-fluid rounded-circle mb-2" />
-            <p>{{ persona.nombre }} 
-            <br>
-            {{ persona.apellidos }} (Profesor)</p>
-          </div>
-        </ng-container>
+    <!-- Selección de curso -->
+    @if (!cursoSeleccionado) {
+      <h3 class="text-center">PASO 1 - Selecciona el Curso</h3>
+      <div id="cursos-list" class="list-group border rounded bg-white">
+        @for (c of getCursos(); track c.id){
+          <button (click)="selectCurso(c.id)" type="button" class="list-group-item list-group-item-action align-middle d-flex justify-content-between align-items-center" >
+            {{c.name}}           
+        </button>
+        }
       </div>
-      <!-- Alumnos -->
-      <div class="orla-row alumnos">
-        <ng-container *ngFor="let persona of seleccionados">
-          <div *ngIf="persona.curso" class="orla-item">
-            <img [src]="persona.imagen" alt="{{ persona.nombre }}" class="img-fluid rounded-circle mb-2" />
-            <p>{{ persona.nombre }} 
-            <br>
-            {{ persona.apellidos }} (Alumno)</p>
-          </div>
-        </ng-container>
+    } @else {
+
+      <div class="row justify-content-center">
+        <div class="col">
+          <button class="btn btn-granate" (click)="unselectCurso()">Cambiar curso</button>
+        </div>
       </div>
-    </div>
-    <button class="btn btn-primary" (click)="generarPDF()">Generar PDF</button>
+
+      <!-- Selección de profesores -->
+      <h2 class="mt-4 text-center">PASO 2 - Selecciona los Profesores</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div class="list-group">
+            @for (p of getProfesores(); track p.id) {
+              <div class="list-group-item">
+                <input type="checkbox" class="form-check-input me-2" (change)="toggleSeleccion(p)" />
+                <label class="form-check-label">{{ p.nombre }} {{ p.apellidos }}</label>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Selección de alumnos -->
+      <h2 class="mt-4 text-center">PASO 3 - Selecciona los Alumnos</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <div id="lista-alumnos" class="list-group">
+            @for (a of getAlumnosByCurso(selectedCursoId); track a.id) {
+              <div class="list-group-item">
+                <input type="checkbox" class="form-check-input me-2" (change)="toggleSeleccion(a)" />
+                <label class="form-check-label">{{ a.nombre }} {{ a.apellidos }}</label>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Selección de fondo -->
+      <h2 class="mt-4 text-center">PASO 4 - Selecciona el Fondo de la Orla</h2>
+      <div class="row">
+        <div class="col text-center">
+          <div class="list-group">
+            @for (f of fondos; track $index) {
+              <div class="list-group-item fondo-item"
+              (click)="seleccionarFondo(f)"
+                 [class.selected]="fondoSeleccionado === f"
+                 [style.cursor]="'pointer'">
+                 <input type="radio" class="form-check-input d-none" name="fondo" value="{{f.id}}" />
+                 <img src="{{f.url}}" class="img-fluid rounded mt-2" style="max-height: 100px;" alt="Fondo de la Orla" />
+
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    }
+
+  </div><!-- col offWhite end-->
+</div><!-- row naranja end-->
+
+ <!-- Mostrar Orla -->
+<div class="row bg-naranja">
+  <div class="col text-center bg-offWhite">
+    @if (seleccionados.length > 0 && fondoSeleccionado) {
+
+      <h2>Vista Previa de la Orla</h2>
+      <div id="orla" [ngStyle]="{'background-image': fondoSeleccionado ? 'url(' + fondoSeleccionado.url + ')' : 'none'}" class="orla mx-auto">
+        <h3 class="nombre-instituto">{{ nombreInstituto }}</h3>
+        <!-- Profesores -->
+        <div class="orla-row profesores">
+            @for (p of seleccionados; track $index) {
+              @if (!p.curso) {
+                <div class="orla-item profesor">
+                  <img src="{{p.imagen}}" alt="" class="img-fluid rounded-circle mb-2">
+                  <p>{{p.nombre}}<br>{{p.apellidos}}</p>
+                </div>
+              }
+            }
+        </div> 
+        <!-- Alumnos -->
+        <div class="orla-row alumnos">
+          @for (p of seleccionados; track $index) {
+            @if (p.curso) {
+              <div class="orla-item">
+                <img src="{{p.imagen}}" alt="" class="img-fluid rounded-circle mb-2">
+                <p>{{p.nombre}}<br>{{p.apellidos}}</p>
+              </div>
+            }
+          }
+        </div>
+      </div>
+      <!-- Botón crear orla -->
+      <h2 class="mt-4 text-center">PASO 5 - Descarga tu Orla</h2>
+      <button class="btn btn-granate mb-4" (click)="generarPDF()">Descargar orla</button>
+
+    }
   </div>
 </div>
+
