@@ -23,23 +23,16 @@ export class ListaAlumnosService {
     {id: 14, nombre:"Alumno 14", apellidos:"Apellido 14", imagen:"../../assets/img/foto-id.jpg", curso:"1"},
     {id: 15, nombre:"Alumno 15", apellidos:"Apellido 15", imagen:"../../assets/img/foto-id.jpg", curso:"1"},
     {id: 16, nombre:"Alumno 16", apellidos:"Apellido 16", imagen:"../../assets/img/foto-id.jpg", curso:"1"},
-    {id: 16, nombre:"Alumno 16", apellidos:"Apellido 16", imagen:"../../assets/img/foto-id.jpg", curso:"1"},
-    {id: 16, nombre:"Alumno 16", apellidos:"Apellido 16", imagen:"../../assets/img/foto-id.jpg", curso:"1"},
-    {id: 16, nombre:"Alumno 16", apellidos:"Apellido 16", imagen:"../../assets/img/foto-id.jpg", curso:"1"},
-    {id: 16, nombre:"Alumno 16", apellidos:"Apellido 16", imagen:"../../assets/img/foto-id.jpg", curso:"1"},
-    {id: 16, nombre:"Alumno 16", apellidos:"Apellido 16", imagen:"../../assets/img/foto-id.jpg", curso:"1"},
-    {id: 16, nombre:"Alumno 16", apellidos:"Apellido 16", imagen:"../../assets/img/foto-id.jpg", curso:"1"},
-    {id: 16, nombre:"Alumno 16", apellidos:"Apellido 16", imagen:"../../assets/img/foto-id.jpg", curso:"1"},
-    {id: 16, nombre:"Alumno 16", apellidos:"Apellido 16", imagen:"../../assets/img/foto-id.jpg", curso:"1"},
-    {id: 16, nombre:"Alumno 16", apellidos:"Apellido 16", imagen:"../../assets/img/foto-id.jpg", curso:"1"},
+    {id: 16, nombre:"Alumno 17", apellidos:"Apellido 17", imagen:"../../assets/img/foto-id.jpg", curso:"1"},
+    {id: 16, nombre:"Alumno 18", apellidos:"Apellido 18", imagen:"../../assets/img/foto-id.jpg", curso:"1"},
   ]
 
   private profesores = [
-    {id: 1, nombre:"Profesor 1", apellidos:"Apellido 1", imagen:"../../assets/img/foto-id.jpg"},
-    {id: 2, nombre:"Profesor 2", apellidos:"Apellido 2", imagen:"../../assets/img/foto-id.jpg"},
-    {id: 3, nombre:"Profesor 3", apellidos:"Apellido 3", imagen:"../../assets/img/foto-id.jpg"},
-    {id: 4, nombre:"Profesor 4", apellidos:"Apellido 4", imagen:"../../assets/img/foto-id.jpg"},
-    {id: 5, nombre:"Profesor 5", apellidos:"Apellido 5", imagen:"../../assets/img/foto-id.jpg"}
+    {id: 1, nombre:"Profesor 1", apellidos:"Apellido 1", imagen:"../../assets/img/profesor.PNG"},
+    {id: 2, nombre:"Profesor 2", apellidos:"Apellido 2", imagen:"../../assets/img/profesor.PNG"},
+    {id: 3, nombre:"Profesor 3", apellidos:"Apellido 3", imagen:"../../assets/img/profesor.PNG"},
+    {id: 4, nombre:"Profesor 4", apellidos:"Apellido 4", imagen:"../../assets/img/profesor.PNG"},
+    {id: 5, nombre:"Profesor 5", apellidos:"Apellido 5", imagen:"../../assets/img/profesor.PNG"}
   ]
 
   constructor() { }
