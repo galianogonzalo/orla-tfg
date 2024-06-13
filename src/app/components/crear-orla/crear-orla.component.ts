@@ -5,31 +5,32 @@ import jsPDF from 'jspdf';
 import { CommonModule, NgStyle } from '@angular/common';
 import { ListaCursosService } from '../../services/lista-cursos.service';
 import { CursoAlumnoService } from '../../services/curso-alumno.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-crear-orla',
   standalone: true,
-  imports: [CommonModule, NgStyle],
+  imports: [CommonModule, NgStyle, FormsModule],
   templateUrl: './crear-orla.component.html',
   styleUrl: 'crear-orla.component.css'
 })
 export class CrearOrlaComponent {
 
-  cursos: any[] = [];
-  alumnos: any[] = [];
-  profesores: any[] = [];
-  seleccionados: any[] = [];
-  fondoSeleccionado: any = null;
-  cursoSeleccionado: any = null;
-  previsualizacionVisible: boolean = false;
-  alumnosPorFila: any[] = [];
-  nombreInstituto: string = 'IES José Planes';
+  cursos: any[] = []
+  alumnos: any[] = []
+  profesores: any[] = []
+  seleccionados: any[] = []
+  fondoSeleccionado: any = null
+  cursoSeleccionado: any = null
+  previsualizacionVisible: boolean = false
+  alumnosPorFila: any[] = []
+  nombreInstituto: string = ''
 
   selectedCursoId: number | null = null
 
   fondos = [
-    { id: 1, nombre: 'Fondo A', url: '../../assets/fondo1.jpg' },
-    { id: 2, nombre: 'Fondo B', url: '../../assets/fondo2.jpg' }
+    { id: 1, nombre: 'Fondo A', url: '../../assets/img/fondo1.jpg' },
+    { id: 2, nombre: 'Fondo B', url: '../../assets/img/fondo2.jpg' }
   ];
   
 
@@ -102,6 +103,10 @@ export class CrearOrlaComponent {
 
       pdf.save('orla.pdf');
     });
+  }
+
+  setNombreInstituto(nombre:string){
+    this.nombreInstituto = nombre.trim()
   }
 
   getCursos(){
