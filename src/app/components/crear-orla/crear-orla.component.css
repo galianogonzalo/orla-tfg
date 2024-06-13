@@ -30,6 +30,11 @@
   text-align: center;
 }
 
+.orla-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
 .orla-item.profesor {
   margin-top: 50px; /* Ajusta el margen-top solo para profesores */
   margin-bottom: 50px;
@@ -59,5 +64,10 @@
 
 div.list-group{
   max-height: 200px;
+  overflow-y: scroll;
+}
+
+#fondosOrla{
+  max-height: 300px;
   overflow-y: scroll;
 }

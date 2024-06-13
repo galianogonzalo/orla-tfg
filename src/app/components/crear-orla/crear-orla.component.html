@@ -14,8 +14,9 @@
       </div>
     } @else {
 
+      <!-- Botón cambiar curso -->
       <div class="row justify-content-center">
-        <div class="col">
+        <div class="col text-center">
           <button class="btn btn-granate" (click)="unselectCurso()">Cambiar curso</button>
         </div>
       </div>
@@ -53,9 +54,9 @@
 
       <!-- Selección de fondo -->
       <h2 class="mt-4 text-center">PASO 4 - Selecciona el Fondo de la Orla</h2>
-      <div class="row">
-        <div class="col text-center">
-          <div class="list-group">
+      <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+          <div class="list-group" id="fondosOrla">
             @for (f of fondos; track $index) {
               <div class="list-group-item fondo-item"
               (click)="seleccionarFondo(f)"
@@ -75,11 +76,13 @@
 </div><!-- row naranja end-->
 
  <!-- Mostrar Orla -->
-<div class="row bg-naranja">
-  <div class="col text-center bg-offWhite">
+
+<div class="row justify-content-center bg-naranja">
+  <div class="col-md-10 mb-3 rounded text-center bg-offWhite">
     @if (seleccionados.length > 0 && fondoSeleccionado) {
 
-      <h2>Vista Previa de la Orla</h2>
+      <h2 class="mt-3 mb-3">Vista Previa de la Orla</h2>
+      <div class="orla-wrapper">
       <div id="orla" [ngStyle]="{'background-image': fondoSeleccionado ? 'url(' + fondoSeleccionado.url + ')' : 'none'}" class="orla mx-auto">
         <h3 class="nombre-instituto">{{ nombreInstituto }}</h3>
         <!-- Profesores -->
@@ -105,6 +108,7 @@
           }
         </div>
       </div>
+      </div>
       <!-- Botón crear orla -->
       <h2 class="mt-4 text-center">PASO 5 - Descarga tu Orla</h2>
       <button class="btn btn-granate mb-4" (click)="generarPDF()">Descargar orla</button>
@@ -112,4 +116,3 @@
     }
   </div>
 </div>
-
