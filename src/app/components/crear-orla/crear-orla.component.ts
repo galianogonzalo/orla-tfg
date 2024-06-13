@@ -74,6 +74,10 @@ export class CrearOrlaComponent {
     this.previsualizacionVisible = !this.previsualizacionVisible;
   }
 
+  limpiarOrla(): void {
+    this.seleccionados = [];
+  }
+
   generarPDF(): void {
     const orlaElement = document.getElementById('orla')!;
     html2canvas(orlaElement, { scale: 2 }).then(canvas => {
@@ -112,6 +116,7 @@ export class CrearOrlaComponent {
 
   unselectCurso(){
     this.cursoSeleccionado = null
+    this.limpiarOrla()
   }
 
   getProfesores(){
