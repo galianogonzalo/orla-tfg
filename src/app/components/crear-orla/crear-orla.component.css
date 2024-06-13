@@ -71,3 +71,9 @@ div.list-group{
   max-height: 300px;
   overflow-y: scroll;
 }
+
+.inputAsignatura{
+  border: none;
+  outline: none;
+  background: transparent;
+}

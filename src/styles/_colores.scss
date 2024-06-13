@@ -1,7 +1,11 @@
 $MiOffWhite: #efefef;
 $MiGranate: #5c1547;
+$MiGranate-400: lighten($MiGranate, 5%);
+$MiGranate-300: lighten($MiGranate, 10%);
 $MiNaranja: #ff5627;
 $MiGris: #262626;
+$MiGris-400: lighten($MiGris, 5%);
+$MiGris-300: lighten($MiGris, 10%);
 
 
 /* BACKGROUNDS */
@@ -36,6 +40,14 @@ $MiGris: #262626;
 .btn-granate-border {
     @extend .btn-granate;
     border: 3px solid $MiGris !important;
+}
+
+.btn-granate:hover, .btn-granate-border:hover{
+    background-color: $MiGranate-300 !important;
+}
+
+#btn-acceso:hover{
+    background-color: $MiGris-300 !important;
 }
 
 /* LINKS */
