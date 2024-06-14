@@ -1,0 +1,25 @@
+$min-height-sm: 50vh;
+$min-height-md: 60vh;
+$min-height-lg: 75vh;
+$min-height-xl: 100vh;
+
+.cuerpo {
+    min-height: 40vh; // Altura mínima por defecto
+
+    @media (min-width: 576px) {
+        min-height: $min-height-md;
+    }
+
+    @media (min-width: 768px) {
+        min-height: $min-height-lg;
+    }
+
+    @media (min-width: 992px) {
+        min-height: $min-height-lg;
+    }
+
+    @media (min-width: 2048px) {
+        min-height: $min-height-xl;
+    }
+}
+
