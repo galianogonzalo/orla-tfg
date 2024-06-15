@@ -10,4 +10,9 @@ import { RouterLink } from '@angular/router';
 })
 export class HeaderComponent {
 
+  /* comprobar si hay un usuario logeado */
+  /* si no hay, se muestra el botón de acceso*/
+  isLoged():boolean{   
+    return false
+  }
 }

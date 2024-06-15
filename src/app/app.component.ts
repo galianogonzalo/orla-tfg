@@ -14,4 +14,11 @@ import { FooterComponent } from './components/footer/footer.component';
 })
 export class AppComponent {
   title = 'orla-tfg';
+
+  /* Comprobar si hay un usuario logeado */
+  /* Si está logeado, muestra navbar*/
+  isLoged():boolean {
+    return true
+  }
+
 }
