@@ -3,36 +3,54 @@ import { ListaAlumnosService } from '../../services/lista-alumnos.service';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { CommonModule, NgStyle } from '@angular/common';
+import { ListaCursosService } from '../../services/lista-cursos.service';
+import { CursoAlumnoService } from '../../services/curso-alumno.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-crear-orla',
   standalone: true,
-  imports: [CommonModule, NgStyle],
+  imports: [CommonModule, NgStyle, FormsModule],
   templateUrl: './crear-orla.component.html',
   styleUrl: 'crear-orla.component.css'
 })
 export class CrearOrlaComponent {
 
- cursos: any[] = [];
-  alumnos: any[] = [];
-  profesores: any[] = [];
-  seleccionados: any[] = [];
-  fondoSeleccionado: any = null;
-  cursoSeleccionado: any = null;
-  previsualizacionVisible: boolean = false;
-  alumnosPorFila: any[] = [];
+  cursos: any[] = []
+  alumnos: any[] = []
+  profesores: any[] = []
+  seleccionados: any[] = []
+  fondoSeleccionado: any = null
+  cursoSeleccionado: any = null
+  previsualizacionVisible: boolean = false
+  alumnosPorFila: any[] = []
+  nombreInstituto: string = ''
+
+  selectedCursoId: number | null = null
 
   fondos = [
-    { id: 1, nombre: 'Fondo A', url: '../../assets/fondo1.jpg' },
-    { id: 2, nombre: 'Fondo B', url: '../../assets/fondo2.jpg' }
+    { id: 1, nombre: 'Fondo A', url: '../../assets/img/fondo1.jpg' },
+    { id: 2, nombre: 'Fondo B', url: '../../assets/img/fondo2.jpg' }
   ];
   
 
-  constructor(private listaAlumnosService: ListaAlumnosService) {}
+  constructor(
+    private listaAlumnosService: ListaAlumnosService,
+    private listaCursosService: ListaCursosService,
+    private CursoAlumnoService: CursoAlumnoService,
+  ) {}
 
   ngOnInit(): void {
     this.cursos = this.listaAlumnosService.getCursos();
     this.profesores = this.listaAlumnosService.getProfesores();
+
+    this.CursoAlumnoService.selectedCursoId$.subscribe(id => {
+      this.selectedCursoId = id
+      if(id !== null){
+        this.getAlumnosByCurso(id)
+      }
+    })
+
   }
 
   seleccionarCurso(curso: string): void {
@@ -55,6 +73,10 @@ export class CrearOrlaComponent {
 
   togglePrevisualizacion(): void {
     this.previsualizacionVisible = !this.previsualizacionVisible;
+  }
+
+  limpiarOrla(): void {
+    this.seleccionados = [];
   }
 
   generarPDF(): void {
@@ -82,4 +104,33 @@ export class CrearOrlaComponent {
       pdf.save('orla.pdf');
     });
   }
+
+  setNombreInstituto(nombre:string){
+    this.nombreInstituto = nombre.trim()
+  }
+
+  getCursos(){
+    return this.listaCursosService.getCursos()
+  }
+
+  selectCurso(cursoId:any){
+    this.CursoAlumnoService.selectCurso(cursoId)
+    this.cursoSeleccionado = cursoId;
+    this.alumnos = this.listaAlumnosService.getAlumnosByCurso(cursoId);
+  }
+
+  unselectCurso(){
+    this.cursoSeleccionado = null
+    this.limpiarOrla()
+  }
+
+  getProfesores(){
+    return this.listaAlumnosService.getProfesores()
+  }
+
+  getAlumnosByCurso(id:any){
+    return this.listaAlumnosService.getAlumnosByCurso(id)
+  }
+
+
 }

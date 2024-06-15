@@ -10,12 +10,8 @@ import { mergeMap } from 'rxjs';
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './login-component.component.html',
-  styles: `
-    #login{
-      height: 61vh;
-      /* margin-bottom: 20px; */
-    }
-  `
+  styles: ``
+  
 })
 export class LoginComponentComponent implements OnInit {
   /* private db = inject(DbService) */

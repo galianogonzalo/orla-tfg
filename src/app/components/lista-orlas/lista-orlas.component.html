@@ -1,9 +1,8 @@
-<div class="row text-center mt-3">
-      <h2>Mis orlas</h2>
-</div>
-<div class="row">
-  <div class="col-md-6 offset-md-3 mt-3 mb-5">
-        <table class="table table-sm table-hover align-middle">
+<div class="row justify-content-center align-items-center bg-naranja cuerpo">
+  <div class="col-11 col-md-6 mt-3 mb-3 py-3 rounded bg-offWhite text-gris">
+    <h2 class="text-center mb-4">MIS ORLAS</h2>
+      <div class="bg-white p-2 rounded">
+        <table class="table table-sm align-middle">
           <thead>
             <tr>
               <th scope="col" width="25%" class="text-center">Nombre</th>
@@ -27,7 +26,7 @@
               <td scope="col" class="text-center">
                 {{o.curso}}
               </td>
-              <!-- COMPONENTE CON 3 BOTONES -->
+              <!-- BOTONES BORRAR Y DESCARGAR -->
               <td scope="col" class="text-center">
                 <app-orla-actions></app-orla-actions>
               </td>
@@ -35,5 +34,6 @@
           }
           </tbody>
         </table>
-    </div>
+      </div>
+    </div>    
 </div>

@@ -9,9 +9,7 @@ import { DbService } from '../../services/db.service';
   standalone: true,
   imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './home.component.html',
-  styles: `#formRegistro{
-    margin-bottom: 20px;
-  }`
+  styles: ``
 })
 export class HomeComponent {
   /* private db = inject(DbService) */
