@@ -46,6 +46,17 @@ $MiGris-300: lighten($MiGris, 10%);
     background-color: $MiGranate-300 !important;
 }
 
+.btn-gris {
+    @extend .btn-primary;  
+    background-color: $MiGris !important;  
+    border: none !important;  
+    color: white !important;  
+}
+
+.btn-gris:hover{
+    background-color: $MiGris-300 !important;
+}
+
 #btn-acceso:hover{
     background-color: $MiGris-300 !important;
 }

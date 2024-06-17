@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ListaAlumnosService } from '../../services/lista-alumnos.service';
 import { TestDBService } from '../../services/test-db.service';
 
@@ -15,15 +15,12 @@ import { TestDBService } from '../../services/test-db.service';
    }
   `
 })
-export class ListaProfesoresComponent {
-  private alumnosDB = inject(ListaAlumnosService)
-  private testDb = inject(TestDBService)
-
-  /* getProfesores(){
-    return this.alumnosDB.getProfesores()
-  } */
-
-  getProfesores(){
-    return this.testDb.getProfesoresByUsuarioId()
+export class ListaProfesoresComponent implements OnInit {
+  profesores: any[] = [];
+  private testDb = inject(TestDBService);
+  
+  ngOnInit(): void {
+    this.profesores = this.testDb.getProfesoresByUsuarioId();
+    console.log(this.profesores)
   }
 }

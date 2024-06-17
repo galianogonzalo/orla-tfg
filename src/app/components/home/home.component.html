@@ -7,7 +7,7 @@
             </h2>
         </div>
     
-        <div class="col-11 col-md-3 border rounded-5 bg-offWhite mt-3 mb-3"><!-- bg-info-subtle border-info-->
+        <div class="col-11 col-md-3 border rounded-5 bg-offWhite mt-3 mb-3">
             <div class="row justify-content-center mt-5">
                 <div class="col-md-10 text-gris">
                     <div class="mb-3 text-center">
@@ -30,7 +30,7 @@
                             <button type="submit" class="btn btn-granate">CREAR CUENTA</button>
                         </div>
                         <div class="mb-2 text-center">
-                            <a routerLink="login" routerLinkActive="active" class="link-dark">¿Ya tienes cuenta? Accede</a>
+                            <a [routerLink]="['/login']" routerLinkActive="router-link-active" class="link-dark">¿Ya tienes cuenta? Accede</a>
                         </div>
                     </form>
                 </div>

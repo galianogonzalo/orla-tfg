@@ -12,11 +12,10 @@ import { TestDBService } from '../../services/test-db.service';
   styles: ``
 })
 export class HomeComponent {
-  /* private db = inject(DbService) */
   private testDb = inject(TestDBService)
 
-  formRegistro: FormGroup;
-  isFormFilled: boolean = false;
+  formRegistro: FormGroup
+  isFormFilled: boolean = false
 
   constructor(private router: Router) {
     this.formRegistro = new FormGroup({
@@ -26,16 +25,9 @@ export class HomeComponent {
     });
 
     this.formRegistro.valueChanges.subscribe(() => {
-      this.isFormFilled = this.formRegistro.valid;
-    });
+      this.isFormFilled = this.formRegistro.valid
+    })
   }
-
-  /* crearUsuario(): void {
-    const usuario = this.formRegistro.value
-    if(usuario){
-      this.db.crearUsuario(usuario)
-    }
-  } */
 
   crearUsuario(): void {
     if(this.formRegistro.valid){
