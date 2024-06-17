@@ -33,13 +33,13 @@ export class TestDBService {
 
   /* PROFESORES */
   private profesores = [
-    {id: 1, nombre:"Profesor 1", apellidos:"Apellido 1", imagen:"../../assets/img/profesor.PNG", rol: "profesor", uid: 1},
-    {id: 2, nombre:"Profesor 2", apellidos:"Apellido 2", imagen:"../../assets/img/profesor.PNG", rol: "profesor", uid: 1},
-    {id: 3, nombre:"Profesor 3", apellidos:"Apellido 3", imagen:"../../assets/img/profesor.PNG", rol: "profesor", uid: 1},
-    {id: 4, nombre:"Profesor 4", apellidos:"Apellido 4", imagen:"../../assets/img/profesor.PNG", rol: "profesor", uid: 1},
-    {id: 5, nombre:"Profesor 5", apellidos:"Apellido 5", imagen:"../../assets/img/profesor.PNG", rol: "profesor", uid: 1},
-    {id: 6, nombre:"Profesor 6", apellidos:"Apellido 6", imagen:"../../assets/img/profesor.PNG", rol: "profesor", uid: 2},
-    {id: 7, nombre:"Profesor 7", apellidos:"Apellido 7", imagen:"../../assets/img/profesor.PNG", rol: "profesor", uid: 2}
+    {id: 1, nombre:"Profesor 1", apellidos:"Apellido 1", imagen:"../../assets/img/Profesor1.jpg", rol: "profesor", uid: 1},
+    {id: 2, nombre:"Profesor 2", apellidos:"Apellido 2", imagen:"../../assets/img/Profesor1.jpg", rol: "profesor", uid: 1},
+    {id: 3, nombre:"Profesor 3", apellidos:"Apellido 3", imagen:"../../assets/img/Profesor1.jpg", rol: "profesor", uid: 1},
+    {id: 4, nombre:"Profesor 4", apellidos:"Apellido 4", imagen:"../../assets/img/Profesor1.jpg", rol: "profesor", uid: 1},
+    {id: 5, nombre:"Profesor 5", apellidos:"Apellido 5", imagen:"../../assets/img/Profesor1.jpg", rol: "profesor", uid: 1},
+    {id: 6, nombre:"Profesor 6", apellidos:"Apellido 6", imagen:"../../assets/img/Profesor1.jpg", rol: "profesor", uid: 2},
+    {id: 7, nombre:"Profesor 7", apellidos:"Apellido 7", imagen:"../../assets/img/Profesor1.jpg", rol: "profesor", uid: 2}
   ]
 
   /* ORLAS */
