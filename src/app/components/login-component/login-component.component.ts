@@ -1,8 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DbService } from '../../services/db.service';
-import { mergeMap } from 'rxjs';
 import { TestDBService } from '../../services/test-db.service';
 import { Router, RouterLink, provideRouter } from '@angular/router';
 

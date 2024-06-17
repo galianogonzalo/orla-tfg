@@ -9,7 +9,7 @@
         <h3 class="text-center">PASO 1 - Introduce el nombre de tu centro</h3>
         <div class="row justify-content-center mb-4">
           <div class="col text-center">
-            <input  type="text" placeholder="Mi centro" [(ngModel)]="nombreInstituto" (ngModelChange)="setNombreInstituto($event)">
+            <input  type="text" [(ngModel)]="nombreInstituto" (ngModelChange)="setNombreInstituto($event)">
           </div>
         </div>
   
@@ -17,7 +17,8 @@
         <h3 class="text-center">PASO 2 - Selecciona el curso</h3>
         <div id="cursos-list" class="list-group border rounded bg-white">
           @for (c of getCursos(); track c.id){
-            <button (click)="selectCurso(c.id)" type="button" class="list-group-item list-group-item-action align-middle d-flex justify-content-between align-items-center" >
+            <button (click)="selectCurso(c.id)" type="button" 
+            class="list-group-item list-group-item-action align-middle d-flex justify-content-between align-items-center" >
               {{c.name}}
           </button>
           }
@@ -36,10 +37,10 @@
         <div class="row justify-content-center">
           <div class="col-md-6">
             <div class="list-group">
-              @for (p of getProfesores(); track p.id) {
+              @for (profesor of getProfesores(); track profesor.id) {
                 <div class="list-group-item">
-                  <input type="checkbox" class="form-check-input me-2" (change)="toggleSeleccion(p)" />
-                  <label class="form-check-label">{{ p.nombre }} {{ p.apellidos }}</label>
+                  <input type="checkbox" class="form-check-input me-2" (change)="seleccionarPersona(profesor)" />
+                  <label class="form-check-label">{{ profesor.nombre }} {{ profesor.apellidos }}</label>
                 </div>
               }
             </div>
@@ -52,10 +53,10 @@
         <div class="row justify-content-center">
           <div class="col-md-6">
             <div id="lista-alumnos" class="list-group">
-              @for (a of getAlumnosByCurso(selectedCursoId); track a.id) {
+              @for (alumno of getAlumnosByCurso(selectedCursoId); track alumno.id) {
                 <div class="list-group-item">
-                  <input type="checkbox" class="form-check-input me-2" (change)="toggleSeleccion(a)" />
-                  <label class="form-check-label">{{ a.nombre }} {{ a.apellidos }}</label>
+                  <input type="checkbox" class="form-check-input me-2" (change)="seleccionarPersona(alumno)" />
+                  <label class="form-check-label">{{ alumno.nombre }} {{ alumno.apellidos }}</label>
                 </div>
               }
             </div>
