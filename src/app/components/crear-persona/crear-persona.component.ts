@@ -39,7 +39,6 @@ export class CrearPersonaComponent implements OnInit{
     })
 
     this.crearPersonaForm.get('rol')!.valueChanges.subscribe(value => {
-      /* this.onRolChange(value) */
       this.handleRolChange(value)
     })
 
@@ -106,7 +105,6 @@ export class CrearPersonaComponent implements OnInit{
             personaData.imagen = downloadURL
             console.log("personaData.imagen: ",personaData.imagen)
             if (personaData.rol === 'alumno') {
-             /*  Number(personaData.curso) */
               console.log("Se crea persona")
               this.testDb.crearAlumno(personaData)
             } else if (personaData.rol === 'profesor') {
