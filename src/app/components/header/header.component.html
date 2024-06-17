@@ -5,6 +5,8 @@
               <img src="assets/img/fotoorla_logo.png" width="120px">
           </a>
       </div>
-      <a [routerLink]="['/login']" routerLinkActive="router-link-active" class="nav-link text-white bg-gris rounded py-2 px-3" id="btn-acceso">ACCESO</a>
+      @if (!isLogedIn()) {
+        <a routerLink="login" routerLinkActive="active" class="nav-link text-white bg-gris rounded py-2 px-3" id="btn-acceso">ACCESO</a>
+      }    
   </div>
 </div>

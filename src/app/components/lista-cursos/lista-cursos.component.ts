@@ -1,7 +1,8 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { ListaCursosService } from '../../services/lista-cursos.service';
 import { CursoAlumnoService } from '../../services/curso-alumno.service';
 import { DbService } from '../../services/db.service';
+import { TestDBService } from '../../services/test-db.service';
 
 declare var bootstrap: any;
 
@@ -27,22 +28,35 @@ export class ListaCursosComponent implements OnInit{
 
   /* private db = inject(DbService) */
 
-  private cursosBD = inject(ListaCursosService)
+  /* private cursosBD = inject(ListaCursosService) */
   private cursoAlumnoSV = inject(CursoAlumnoService)
+
+  private testDb = inject(TestDBService)
 
   private cursoAEliminar: number | null = null
 
   ngOnInit(): void {
     this.getCursos()
+    console.log(this.getCursos())
   }
 
-  getCursos(){
+  /* getCursos(){
     return this.cursosBD.getCursos()
+  } */
+
+  /* selectCurso(cursoId:any){
+    this.cursoAlumnoSV.selectCurso(cursoId)
+  } */
+
+  getCursos(){
+    return this.testDb.getCursosByUsuarioId()
   }
 
   selectCurso(cursoId:any){
     this.cursoAlumnoSV.selectCurso(cursoId)
   }
+
+
 
   openConfirmModal(cursoId: number): void {
     this.cursoAEliminar = cursoId;

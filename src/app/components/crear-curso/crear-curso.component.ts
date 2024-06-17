@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DbService } from '../../services/db.service';
+import { TestDBService } from '../../services/test-db.service';
 
 @Component({
   selector: 'app-crear-curso',
@@ -12,6 +13,7 @@ import { DbService } from '../../services/db.service';
 export class CrearCursoComponent {
   
   /* private db = inject(DbService) */
+  private testDb = inject(TestDBService)
 
   crearCursoForm: FormGroup
 
@@ -21,10 +23,16 @@ export class CrearCursoComponent {
     });
   }
 
-  crearCurso() {
-    /* const curso = this.crearCursoForm.value
-    if(curso){
-      this.db.crearCurso(curso)
-    } */
+  crearCurso() { 
+    if(this.crearCursoForm.valid){
+      const curso = this.crearCursoForm.value
+      this.testDb.crearCurso(curso)
+    } else {
+      alert('Formulario no válido. Por favor, revisa los campos.');
+    }
   }
+
+
+
+  
 }

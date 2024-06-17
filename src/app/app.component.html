@@ -1,6 +1,8 @@
 <div class="container-fluid">
   <app-header></app-header>
-  <app-nav-menu></app-nav-menu>
+  @if(isLogedIn()){
+    <app-nav-menu></app-nav-menu>
+  } 
 </div>
 <div class="container-fluid">
   <router-outlet></router-outlet>
