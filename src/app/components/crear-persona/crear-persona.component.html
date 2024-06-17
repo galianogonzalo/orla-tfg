@@ -24,17 +24,17 @@
   
         <div class="form-group">
           <label for="nombre">Curso</label>
-          <select name="" id="" id="curso" class="form-control" formControlName="curso">
+          <select id="curso" class="form-control" formControlName="curso">
             <option value="" disabled selected hidden>Seleccione un curso</option>
             @for (c of getCursos(); track c.id) {
-              <option value="{{c.name}}">{{c.name}}</option>
+              <option value="{{c.id}}">{{c.nombre}}</option>
             }          
           </select>
         </div>  
   
         <div class="form-group">
-          <label for="foto">Foto</label>
-          <input type="file" class="form-control" id="foto" accept="images/*" (change)="capturarImagen($event)"/>
+          <label for="imagen">Imagen</label>
+          <input type="file" class="form-control" id="imagen" accept="images/*" (change)="capturarImagen($event)"/>
         </div>
         <br/>
         <button type="submit" class="btn btn-granate">Crear</button>

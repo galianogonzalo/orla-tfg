@@ -15,7 +15,6 @@ import { Router, RouterLink, provideRouter } from '@angular/router';
   
 })
 export class LoginComponentComponent implements OnInit {
-  /* private db = inject(DbService) */
 
   private testDb = inject(TestDBService)
 
@@ -30,11 +29,6 @@ export class LoginComponentComponent implements OnInit {
     });
     
   }
-  
-  /* login(): void {
-    const { usuario, clave } = this.formLogin.value
-    this.db.login( usuario, clave) 
-  } */
 
   login(){
     if(this.formLogin.valid){
@@ -45,7 +39,7 @@ export class LoginComponentComponent implements OnInit {
         this.router.navigate(['/mis_cursos'])
       }
     } else {
-      alert('Formulario no válido. Por favor, revisa los campos.');
+      alert('Formulario no válido. Por favor, revisa los campos.')
     }
   }
 

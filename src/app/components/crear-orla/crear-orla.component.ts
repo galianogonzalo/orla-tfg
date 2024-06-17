@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import { ListaAlumnosService } from '../../services/lista-alumnos.service';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { CommonModule, NgStyle } from '@angular/common';
-import { ListaCursosService } from '../../services/lista-cursos.service';
-import { CursoAlumnoService } from '../../services/curso-alumno.service';
 import { FormsModule } from '@angular/forms';
+import { TestDBService } from '../../services/test-db.service';
 
 @Component({
   selector: 'app-crear-orla',
@@ -28,42 +26,41 @@ export class CrearOrlaComponent {
 
   selectedCursoId: number | null = null
 
+  fechaActual: string;
+
   fondos = [
     { id: 1, nombre: 'Fondo A', url: '../../assets/img/fondo1.jpg' },
     { id: 2, nombre: 'Fondo B', url: '../../assets/img/fondo2.jpg' }
   ];
   
 
-  constructor(
-    private listaAlumnosService: ListaAlumnosService,
-    private listaCursosService: ListaCursosService,
-    private CursoAlumnoService: CursoAlumnoService,
-  ) {}
+  constructor(private testDb: TestDBService) {
+    const hoy = new Date()
+    const dia = hoy.getDate()
+    const mes = hoy.getMonth() + 1 // Los meses van de 0 a 11, por eso se suma 1
+    const anio = hoy.getFullYear()
+
+    this.fechaActual = `${dia}-${mes}-${anio}`
+  }
 
   ngOnInit(): void {
-    this.cursos = this.listaAlumnosService.getCursos();
-    this.profesores = this.listaAlumnosService.getProfesores();
+    this.cursos = this.testDb.getCursosByUsuarioId()
+    this.profesores = this.testDb.getProfesoresByUsuarioId()
 
-    this.CursoAlumnoService.selectedCursoId$.subscribe(id => {
+    this.testDb.selectedCursoId$.subscribe(id => {
       this.selectedCursoId = id
       if(id !== null){
         this.getAlumnosByCurso(id)
       }
     })
-
-  }
-
-  seleccionarCurso(curso: string): void {
-    this.cursoSeleccionado = curso;
-    this.alumnos = this.listaAlumnosService.getAlumnosByCurso(curso);
   }
 
   seleccionarPersona(persona: any): void {
-    const index = this.seleccionados.indexOf(persona);
+    const index = this.seleccionados.indexOf(persona)
     if (index >= 0) {
-      this.seleccionados.splice(index, 1);
+      this.seleccionados.splice(index, 1)
     } else {
-      this.seleccionados.push(persona);
+      this.seleccionados.push(persona)
     }
   }
 
@@ -72,25 +69,33 @@ export class CrearOrlaComponent {
   }
 
   limpiarOrla(): void {
-    this.seleccionados = [];
+    this.seleccionados = []
   }
 
   generarPDF(): void {
-    const orlaElement = document.getElementById('orla')!;
+    const orlaElement = document.getElementById('orla')!
     html2canvas(orlaElement).then(canvas => {
-      const imgData = canvas.toDataURL('image/png');
+      const imgData = canvas.toDataURL('image/png')
       const imgWidth = 297; // Anchura de A4 en mm (landscape)
       const pageHeight = 210; // Altura de A4 en mm (landscape)
-      const imgHeight = canvas.height * imgWidth / canvas.width;
-      let heightLeft = imgHeight;
+      const imgHeight = canvas.height * imgWidth / canvas.width
+      let heightLeft = imgHeight
       
-      const pdf = new jsPDF('l', 'mm', 'a4');
-      let position = 0;
+      const pdf = new jsPDF('l', 'mm', 'a4')
+      let position = 0
 
-      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
+      pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight)
+      heightLeft -= pageHeight
 
-      pdf.save('orla.pdf');
+      pdf.save('orla.pdf')
+
+      const orlaData = {
+        fecha: this.fechaActual,
+        curso: this.selectedCursoId,
+        archivo: pdf.output('blob') 
+      }
+
+      this.testDb.crearOrla(orlaData)
     });
   }
 
@@ -99,13 +104,13 @@ export class CrearOrlaComponent {
   }
 
   getCursos(){
-    return this.listaCursosService.getCursos()
+    return this.testDb.getCursosByUsuarioId()
   }
 
   selectCurso(cursoId:any){
-    this.CursoAlumnoService.selectCurso(cursoId)
-    this.cursoSeleccionado = cursoId;
-    this.alumnos = this.listaAlumnosService.getAlumnosByCurso(cursoId);
+    this.testDb.seleccionarCurso(cursoId)
+    this.cursoSeleccionado = cursoId
+    this.alumnos = this.testDb.getAlumnosByCurso(cursoId)
   }
 
   unselectCurso(){
@@ -114,11 +119,11 @@ export class CrearOrlaComponent {
   }
 
   getProfesores(){
-    return this.listaAlumnosService.getProfesores()
+    return this.testDb.getProfesoresByUsuarioId()
   }
 
   getAlumnosByCurso(id:any){
-    return this.listaAlumnosService.getAlumnosByCurso(id)
+    return this.testDb.getAlumnosByCurso(id)
   }
 
 

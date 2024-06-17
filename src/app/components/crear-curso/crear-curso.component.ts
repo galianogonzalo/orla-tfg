@@ -16,15 +16,15 @@ export class CrearCursoComponent {
   constructor(private testDb: TestDBService) {
     this.crearCursoForm = new FormGroup({
       nombre: new FormControl('', [Validators.required]),
-    });
+    })
   }
 
   crearCurso() { 
     if (this.crearCursoForm.valid) {
-      const curso = this.crearCursoForm.value.nombre;
-      this.testDb.crearCurso(curso);
+      const curso = this.crearCursoForm.value.nombre
+      this.testDb.crearCurso(curso)
     } else {
-      alert('Formulario no válido. Por favor, revisa los campos.');
+      alert('Formulario no válido. Por favor, revisa los campos.')
     }
   }
 

@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
-import { CursoAlumnoService } from '../../services/curso-alumno.service';
 import { TestDBService } from '../../services/test-db.service';
 
 declare var bootstrap: any;
@@ -23,12 +22,6 @@ declare var bootstrap: any;
   `
 })
 export class ListaCursosComponent implements OnInit{
-
-  /* private db = inject(DbService) */
-
-  /* private cursosBD = inject(ListaCursosService) */
-  private cursoAlumnoSV = inject(CursoAlumnoService)
-
   private testDb = inject(TestDBService)
 
   private cursoAEliminar: number | null = null
@@ -38,47 +31,35 @@ export class ListaCursosComponent implements OnInit{
     console.log(this.getCursos())
   }
 
-  /* getCursos(){
-    return this.cursosBD.getCursos()
-  } */
-
-  /* selectCurso(cursoId:any){
-    this.cursoAlumnoSV.selectCurso(cursoId)
-  } */
-
   getCursos(){
     return this.testDb.getCursosByUsuarioId()
   }
 
   selectCurso(cursoId:any){
-    this.cursoAlumnoSV.selectCurso(cursoId)
+    this.testDb.seleccionarCurso(cursoId)
   }
-
-
 
   openConfirmModal(cursoId: number): void {
-    this.cursoAEliminar = cursoId;
-    const modal = new bootstrap.Modal(document.getElementById('confirmDeleteModal'));
-    modal.show();
+    this.cursoAEliminar = cursoId
+    const modal = new bootstrap.Modal(document.getElementById('confirmDeleteModal'))
+    modal.show()
   }
-
 
   confirmarBorrado(): void {
     if (this.cursoAEliminar !== null) {
-      this.borrarCurso(this.cursoAEliminar);
-      this.cursoAEliminar = null;
+      this.borrarCurso(this.cursoAEliminar)
+      this.cursoAEliminar = null
     }
-    const modalElement = document.getElementById('confirmDeleteModal');
+    const modalElement = document.getElementById('confirmDeleteModal')
     if (modalElement) {
       const modal = bootstrap.Modal.getInstance(modalElement);
       if (modal) {
-        modal.hide();
+        modal.hide()
       }
     }
   }
 
-
   borrarCurso(id: number): void {
-    this.testDb.borrarCurso(id);
+    this.testDb.borrarCurso(id)
   }
 }

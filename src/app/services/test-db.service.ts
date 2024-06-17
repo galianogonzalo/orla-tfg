@@ -26,9 +26,28 @@ export class TestDBService {
   
   /* ALUMNOS */
   private alumnos = [
-    {id: 1, nombre:"Alumno 1", apellidos:"Apellido 1", imagen:"../../assets/img/foto-id.jpg", curso:"1", rol: "alumno", uid: 1},
-    {id: 2, nombre:"Alumno 2", apellidos:"Apellido 2", imagen:"../../assets/img/foto-id.jpg", curso:"1", rol: "alumno", uid: 1},
-    {id: 3, nombre:"Alumno 3", apellidos:"Apellido 3", imagen:"../../assets/img/foto-id.jpg", curso:"1", rol: "alumno", uid: 1},
+    {id: 1, nombre:"Alumno 1", apellidos:"Apellido 1", imagen:"../../assets/img/foto-id.jpg", curso:1, rol: "alumno", uid: 1},
+    {id: 2, nombre:"Alumno 2", apellidos:"Apellido 2", imagen:"../../assets/img/foto-id.jpg", curso:1, rol: "alumno", uid: 1},
+    {id: 3, nombre:"Alumno 3", apellidos:"Apellido 3", imagen:"../../assets/img/Alumna2.jpg", curso:1, rol: "alumno", uid: 1},
+    {id: 1, nombre:"Alumno 4", apellidos:"Apellido 4", imagen:"../../assets/img/foto-id.jpg", curso:1, rol: "alumno", uid: 1},
+    {id: 2, nombre:"Alumno 5", apellidos:"Apellido 5", imagen:"../../assets/img/foto-id.jpg", curso:1, rol: "alumno", uid: 1},
+    {id: 3, nombre:"Alumno 6", apellidos:"Apellido 6", imagen:"../../assets/img/Alumna2.jpg", curso:1, rol: "alumno", uid: 1},
+    {id: 1, nombre:"Alumno 7", apellidos:"Apellido 7", imagen:"../../assets/img/foto-id.jpg", curso:1, rol: "alumno", uid: 1},
+    {id: 2, nombre:"Alumno 8", apellidos:"Apellido 8", imagen:"../../assets/img/foto-id.jpg", curso:1, rol: "alumno", uid: 1},
+    {id: 3, nombre:"Alumno 9", apellidos:"Apellido 9", imagen:"../../assets/img/Alumna2.jpg", curso:1, rol: "alumno", uid: 1},
+    {id: 1, nombre:"Alumno 10", apellidos:"Apellido 10", imagen:"../../assets/img/Alumna2.jpg", curso:1, rol: "alumno", uid: 1},
+    {id: 2, nombre:"Alumno 11", apellidos:"Apellido 11", imagen:"../../assets/img/foto-id.jpg", curso:1, rol: "alumno", uid: 1},
+    {id: 3, nombre:"Alumno 12", apellidos:"Apellido 12", imagen:"../../assets/img/Alumna2.jpg", curso:1, rol: "alumno", uid: 1},
+    {id: 2, nombre:"Alumno 13", apellidos:"Apellido 13", imagen:"../../assets/img/foto-id.jpg", curso:2, rol: "alumno", uid: 1},
+    {id: 3, nombre:"Alumno 14", apellidos:"Apellido 14", imagen:"../../assets/img/Alumna2.jpg", curso:2, rol: "alumno", uid: 1},
+    {id: 1, nombre:"Alumno 15", apellidos:"Apellido 15", imagen:"../../assets/img/Alumna2.jpg", curso:2, rol: "alumno", uid: 1},
+    {id: 2, nombre:"Alumno 16", apellidos:"Apellido 16", imagen:"../../assets/img/foto-id.jpg", curso:2, rol: "alumno", uid: 1},
+    {id: 3, nombre:"Alumno 17", apellidos:"Apellido 17", imagen:"../../assets/img/Alumna2.jpg", curso:2, rol: "alumno", uid: 1},
+    {id: 2, nombre:"Alumno 18", apellidos:"Apellido 18", imagen:"../../assets/img/foto-id.jpg", curso:3, rol: "alumno", uid: 1},
+    {id: 3, nombre:"Alumno 19", apellidos:"Apellido 19", imagen:"../../assets/img/Alumna2.jpg", curso:3, rol: "alumno", uid: 1},
+    {id: 1, nombre:"Alumno 20", apellidos:"Apellido 20", imagen:"../../assets/img/Alumna2.jpg", curso:3, rol: "alumno", uid: 1},
+    {id: 2, nombre:"Alumno 21", apellidos:"Apellido 21", imagen:"../../assets/img/foto-id.jpg", curso:3, rol: "alumno", uid: 1},
+    {id: 3, nombre:"Alumno 22", apellidos:"Apellido 22", imagen:"../../assets/img/Alumna2.jpg", curso:3, rol: "alumno", uid: 1},
   ]
 
   /* PROFESORES */
@@ -43,7 +62,9 @@ export class TestDBService {
   ]
 
   /* ORLAS */
-  private orlas = []
+  private orlas = [
+    {id: 1, uid: 1, fecha: "17-06-2024", curso: 1, archivo: ""}
+  ]
 
   /* FIN ARRAYS */
   
@@ -62,7 +83,7 @@ export class TestDBService {
     }
 
     const nuevoUsuario = {
-      id: lastId + 1,
+      id: lastId++,
       email: email,
       password: password
     };
@@ -97,6 +118,9 @@ export class TestDBService {
   }
 
   /* CURSOS */
+  private selectedCursoIdSource = new BehaviorSubject<number | null>(null)
+  selectedCursoId$ = this.selectedCursoIdSource.asObservable()
+
   crearCurso(nombre: string): void {
     if (this.usuarioLogueadoId !== null) {
       let lastId = 0;
@@ -117,6 +141,16 @@ export class TestDBService {
     }
   }
 
+  getNombreCursoById(id: number): string {
+    const cursoEncontrado = this.cursos.find(curso => curso.id === id)
+    if (cursoEncontrado) {
+      return cursoEncontrado.nombre
+    } else {
+      return ''
+    }
+  }
+
+
   borrarCurso(id: number): void {
     this.cursos = this.cursos.filter(curso => curso.id !== id);
     this.cursosSubject.next(this.cursos);
@@ -127,7 +161,9 @@ export class TestDBService {
     return this.cursos.filter(curso => curso.uid === uid)
   } 
 
-  
+  seleccionarCurso(id: number){
+    this.selectedCursoIdSource.next(id)
+  }
 
   /* ALUMNOS */
   crearAlumno(alumnoData: any){
@@ -140,15 +176,26 @@ export class TestDBService {
         id: lastId++,
         nombre: alumnoData.nombre,
         apellidos: alumnoData.apellidos,
-        imagen: alumnoData.foto,
+        imagen: alumnoData.imagen,
         curso: alumnoData.curso,
         rol: "alumno",
         uid: this.usuarioLogueadoId
       }
       this.alumnos.push(nuevoAlumno)
+      console.log(nuevoAlumno)
     } else {
       console.error('No hay usuario logueado. No se puede crear el alumno.')
     }
+  }
+
+  getAlumnosByCurso(id: number){
+    let uid = this.usuarioLogueadoId
+    const cursoId = id
+    const alumnosFiltrados = this.alumnos.filter(alumno => {
+      return alumno.curso === cursoId && alumno.uid === uid
+    })
+
+    return alumnosFiltrados
   }
 
   borrarAlumno(){
@@ -166,7 +213,7 @@ export class TestDBService {
         id: lastId++,
         nombre: profesorData.nombre,
         apellidos: profesorData.apellidos,
-        imagen: profesorData.foto,
+        imagen: profesorData.imagen,
         rol: "profesor",
         uid: this.usuarioLogueadoId
       }
@@ -183,6 +230,30 @@ export class TestDBService {
 
   borrarProfesor(): void{
 
+  }
+
+  crearOrla(orlaData: any){
+    if (this.usuarioLogueadoId !== null) {
+      let lastId = 0;
+      if (this.orlas.length > 0) {
+        lastId = this.orlas[this.orlas.length - 1].id
+      }
+      const nuevaOrla = {
+        id: lastId + 1,
+        uid: this.usuarioLogueadoId,
+        fecha: orlaData.fecha,
+        curso: orlaData.curso,
+        archivo: orlaData.archivo       
+      }
+      this.orlas.push(nuevaOrla)
+    } else {
+      console.error('No hay usuario logueado. No se puede crear la orla.')
+    }
+  }
+
+  getOrlasByUsuarioId(){
+    let uid = this.usuarioLogueadoId
+    return this.orlas.filter(orla => orla.uid === uid)
   }
 
 }

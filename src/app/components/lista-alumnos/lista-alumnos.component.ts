@@ -1,7 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { ListaAlumnosService } from '../../services/lista-alumnos.service';
 import { ListaCursosComponent } from '../lista-cursos/lista-cursos.component';
-import { CursoAlumnoService } from '../../services/curso-alumno.service';
+import { TestDBService } from '../../services/test-db.service';
 
 @Component({
   selector: 'app-lista-alumnos',
@@ -17,31 +16,24 @@ import { CursoAlumnoService } from '../../services/curso-alumno.service';
   `
 })
 export class ListaAlumnosComponent implements OnInit {
-
-  /* private db = inject(DbService) */
-  
-  private alumnosDB = inject(ListaAlumnosService)
-  private cursoAlumnoSV = inject(CursoAlumnoService)
-
+  private testDb = inject(TestDBService)
 
   alumnos:any[] = []
   selectedCursoId: number | null = null
 
   ngOnInit(): void {
-      this.cursoAlumnoSV.selectedCursoId$.subscribe(id => {
+      this.testDb.selectedCursoId$.subscribe(id => {
         this.selectedCursoId = id
+        
         if(id !== null){
           this.getAlumnosByCurso(id)
+          console.log(this.getAlumnosByCurso(id))
         }
       })
   }
 
-  getAlumnos(){
-    return this.alumnosDB.getAlumnos()
-  }
-
   getAlumnosByCurso(cursoId:any){
-    return this.alumnosDB.getAlumnosByCurso(cursoId)
+    return this.testDb.getAlumnosByCurso(cursoId)
   }
 
   
