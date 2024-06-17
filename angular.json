@@ -13,6 +13,14 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "allowedCommonJsDependencies": [
+              "core-js",
+              "raf",
+              "rgbcolor",
+              "html2canvas",
+              "dompurify",
+              "jspdf",
+              "canvg"],
             "outputPath": "dist/orla-tfg",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -34,8 +42,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "700kb",
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
