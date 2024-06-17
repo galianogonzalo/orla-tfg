@@ -1,8 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { DbService } from '../../services/db.service';
+import { TestDBService } from '../../services/test-db.service';
 
 @Component({
   selector: 'app-home',
@@ -13,11 +14,12 @@ import { DbService } from '../../services/db.service';
 })
 export class HomeComponent {
   /* private db = inject(DbService) */
+  private testDb = inject(TestDBService)
 
   formRegistro: FormGroup;
   isFormFilled: boolean = false;
 
-  constructor() {
+  constructor(private router: Router) {
     this.formRegistro = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
@@ -29,11 +31,28 @@ export class HomeComponent {
     });
   }
 
-  crearUsuario(): void {
-    /* const usuario = this.formRegistro.value
+  /* crearUsuario(): void {
+    const usuario = this.formRegistro.value
     if(usuario){
       this.db.crearUsuario(usuario)
-    } */
+    }
+  } */
+
+  crearUsuario(): void {
+    if(this.formRegistro.valid){
+      const {email, password} = this.formRegistro.value
+      this.testDb.crearUsuario(email, password)
+      if(this.comprobarCredenciales(email, password)){
+        this.testDb.setIsLogedIn(true)
+        this.router.navigate(['/mis_cursos'])
+      }
+    } else {
+      alert('Formulario no válido. Por favor, revisa los campos.');
+    }
+  }
+
+  comprobarCredenciales(email: string, password: string): boolean{
+    return this.testDb.comprobarCredenciales(email, password)
   }
 
 }

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { TestDBService } from '../../services/test-db.service';
 
 @Component({
   selector: 'app-header',
@@ -10,9 +11,11 @@ import { RouterLink } from '@angular/router';
 })
 export class HeaderComponent {
 
+  private testDb = inject(TestDBService)
+
   /* comprobar si hay un usuario logeado */
   /* si no hay, se muestra el botón de acceso*/
-  isLoged():boolean{   
-    return false
+  isLogedIn():boolean{   
+    return this.testDb.getIsLogedIn()
   }
 }
