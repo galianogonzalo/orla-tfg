@@ -2,7 +2,6 @@ import { Component, OnInit, inject } from '@angular/core';
 import { ListaAlumnosService } from '../../services/lista-alumnos.service';
 import { ListaCursosComponent } from '../lista-cursos/lista-cursos.component';
 import { CursoAlumnoService } from '../../services/curso-alumno.service';
-import { DbService } from '../../services/db.service';
 
 @Component({
   selector: 'app-lista-alumnos',
