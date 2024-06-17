@@ -28,11 +28,11 @@ export class ListaAlumnosService {
   ]
 
   private profesores = [
-    {id: 1, nombre:"Profesor 1", apellidos:"Apellido 1", imagen:"../../assets/img/profesor.PNG"},
-    {id: 2, nombre:"Profesor 2", apellidos:"Apellido 2", imagen:"../../assets/img/profesor.PNG"},
-    {id: 3, nombre:"Profesor 3", apellidos:"Apellido 3", imagen:"../../assets/img/profesor.PNG"},
-    {id: 4, nombre:"Profesor 4", apellidos:"Apellido 4", imagen:"../../assets/img/profesor.PNG"},
-    {id: 5, nombre:"Profesor 5", apellidos:"Apellido 5", imagen:"../../assets/img/profesor.PNG"}
+    {id: 1, nombre:"Profesor 1", apellidos:"Apellido 1", imagen:"../../assets/img/Profesor1.jpg"},
+    {id: 2, nombre:"Profesor 2", apellidos:"Apellido 2", imagen:"../../assets/img/Profesor1.jpg"},
+    {id: 3, nombre:"Profesor 3", apellidos:"Apellido 3", imagen:"../../assets/img/Profesor1.jpg"},
+    {id: 4, nombre:"Profesor 4", apellidos:"Apellido 4", imagen:"../../assets/img/Profesor1.jpg"},
+    {id: 5, nombre:"Profesor 5", apellidos:"Apellido 5", imagen:"../../assets/img/Profesor1.jpg"}
   ]
 
   constructor() { }

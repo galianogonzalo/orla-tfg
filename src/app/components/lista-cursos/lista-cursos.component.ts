@@ -1,7 +1,5 @@
 import { Component, Input, OnInit, inject } from '@angular/core';
-import { ListaCursosService } from '../../services/lista-cursos.service';
 import { CursoAlumnoService } from '../../services/curso-alumno.service';
-import { DbService } from '../../services/db.service';
 import { TestDBService } from '../../services/test-db.service';
 
 declare var bootstrap: any;
@@ -80,7 +78,7 @@ export class ListaCursosComponent implements OnInit{
   }
 
 
-  borrarCurso(id:number){
-
+  borrarCurso(id: number): void {
+    this.testDb.borrarCurso(id);
   }
 }

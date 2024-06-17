@@ -24,7 +24,7 @@ export class CrearOrlaComponent {
   cursoSeleccionado: any = null
   previsualizacionVisible: boolean = false
   alumnosPorFila: any[] = []
-  nombreInstituto: string = ''
+  nombreInstituto: string = 'IES José Planes'
 
   selectedCursoId: number | null = null
 
@@ -58,7 +58,7 @@ export class CrearOrlaComponent {
     this.alumnos = this.listaAlumnosService.getAlumnosByCurso(curso);
   }
 
-  toggleSeleccion(persona: any): void {
+  seleccionarPersona(persona: any): void {
     const index = this.seleccionados.indexOf(persona);
     if (index >= 0) {
       this.seleccionados.splice(index, 1);
@@ -71,20 +71,16 @@ export class CrearOrlaComponent {
     this.fondoSeleccionado = fondo;
   }
 
-  togglePrevisualizacion(): void {
-    this.previsualizacionVisible = !this.previsualizacionVisible;
-  }
-
   limpiarOrla(): void {
     this.seleccionados = [];
   }
 
   generarPDF(): void {
     const orlaElement = document.getElementById('orla')!;
-    html2canvas(orlaElement, { scale: 2 }).then(canvas => {
+    html2canvas(orlaElement).then(canvas => {
       const imgData = canvas.toDataURL('image/png');
-      const imgWidth = 297; // Width of A4 in mm (landscape)
-      const pageHeight = 210; // Height of A4 in mm (landscape)
+      const imgWidth = 297; // Anchura de A4 en mm (landscape)
+      const pageHeight = 210; // Altura de A4 en mm (landscape)
       const imgHeight = canvas.height * imgWidth / canvas.width;
       let heightLeft = imgHeight;
       
@@ -93,13 +89,6 @@ export class CrearOrlaComponent {
 
       pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
       heightLeft -= pageHeight;
-
-      while (heightLeft >= 0) {
-        position = heightLeft - imgHeight;
-        pdf.addPage();
-        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
-      }
 
       pdf.save('orla.pdf');
     });
