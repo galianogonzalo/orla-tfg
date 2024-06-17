@@ -96,7 +96,7 @@ export class CrearOrlaComponent {
       }
 
       this.testDb.crearOrla(orlaData)
-    });
+    })
   }
 
   setNombreInstituto(nombre:string){
@@ -119,10 +119,12 @@ export class CrearOrlaComponent {
   }
 
   getProfesores(){
+    console.log(this.testDb.getProfesoresByUsuarioId())
     return this.testDb.getProfesoresByUsuarioId()
   }
 
   getAlumnosByCurso(id:any){
+    console.log
     return this.testDb.getAlumnosByCurso(id)
   }
 

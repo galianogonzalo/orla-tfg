@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class TestDBService {
 
   constructor() {
-    this.usuarioLogueadoId = 1
+    /* this.usuarioLogueadoId = 1 */
    }
 
   /* ARRAYS */
@@ -73,7 +73,7 @@ export class TestDBService {
   /* USUARIOS */
   private usuarioLogueadoId: number | null = null
 
-  private isLogedIn = true
+  private isLogedIn = false
 
   crearUsuario(email: string, password: string): void {
     let lastId = 0
