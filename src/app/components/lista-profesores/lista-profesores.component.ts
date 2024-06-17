@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ListaAlumnosService } from '../../services/lista-alumnos.service';
+import { TestDBService } from '../../services/test-db.service';
 
 @Component({
   selector: 'app-lista-profesores',
@@ -16,8 +17,13 @@ import { ListaAlumnosService } from '../../services/lista-alumnos.service';
 })
 export class ListaProfesoresComponent {
   private alumnosDB = inject(ListaAlumnosService)
+  private testDb = inject(TestDBService)
+
+  /* getProfesores(){
+    return this.alumnosDB.getProfesores()
+  } */
 
   getProfesores(){
-    return this.alumnosDB.getProfesores()
+    return this.testDb.getProfesoresByUsuarioId()
   }
 }
